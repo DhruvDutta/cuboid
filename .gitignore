@@ -1,0 +1,28 @@
+# Django project
+migrations/
+__pycache__/
+# Ignore media files
+media/
+
+# Ignore static files
+static/
+
+# Ignore build files
+build/
+
+# Ignore test coverage files
+.coverage
+
+# Ignore documentation files
+docs/
+
+# Ignore virtual environment files
+venv/
+
+# Ignore database files
+db.sqlite3
+
+# Ignore any other files that you don't want to track
+*.log
+*.tmp
+*~

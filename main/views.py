@@ -73,3 +73,8 @@ class BoxDelete(generics.DestroyAPIView):
     queryset = Box.objects.all()
     serializer_class = BoxSerializer
     permission_classes = [IsCreatorOrReadOnly]
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return JsonResponse({"message": "Box deleted successfully."}, status=200)

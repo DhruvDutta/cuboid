@@ -8,8 +8,8 @@ from .serializers import BoxSerializer
 class BoxFilter(filters.FilterSet):
     length__gt = filters.NumberFilter(field_name='length', lookup_expr='gt')
     length__lt = filters.NumberFilter(field_name='length', lookup_expr='lt')
-    breadth__gt = filters.NumberFilter(field_name='breadth', lookup_expr='gt')
-    breadth__lt = filters.NumberFilter(field_name='breadth', lookup_expr='lt')
+    width__gt = filters.NumberFilter(field_name='width', lookup_expr='gt')
+    width__lt = filters.NumberFilter(field_name='width', lookup_expr='lt')
     height__gt = filters.NumberFilter(field_name='height', lookup_expr='gt')
     height__lt = filters.NumberFilter(field_name='height', lookup_expr='lt')
     area__gt = filters.NumberFilter(field_name='area', lookup_expr='gt')
@@ -26,4 +26,4 @@ class BoxFilter(filters.FilterSet):
 
     class Meta:
         model = Box
-        fields = ['length', 'breadth', 'height', 'created_at']
+        fields = ['length', 'width', 'height', 'created_at']

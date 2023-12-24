@@ -54,7 +54,7 @@ class ListAllBoxes(generics.ListAPIView):
 
     def get_queryset(self):
         if not self.request.user.is_staff:
-            return self.queryset.only('length', 'breadth', 'height')
+            return self.queryset.only('length', 'width', 'height')
         return self.queryset
 
 

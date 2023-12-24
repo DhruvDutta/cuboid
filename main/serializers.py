@@ -8,7 +8,7 @@ class BoxSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Box
-        fields = ['length', 'breadth', 'height', 'area',
+        fields = ['length', 'width', 'height', 'area',
                   'volume', 'created_by', 'created_at', 'updated_at']
 
     def __init__(self, *args, **kwargs):
@@ -23,4 +23,4 @@ class BoxSerializer(serializers.ModelSerializer):
 class BoxUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Box
-        fields = ['length', 'breadth', 'height',]
+        fields = ['length', 'width', 'height',]

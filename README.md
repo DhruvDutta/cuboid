@@ -34,14 +34,14 @@ Brief description or introduction to your project.
    curl --location 'https://dhruvdutta1802.pythonanywhere.com/create/' \
    --header 'Authorization: Token yourtoken' \
    --form 'length="3"' \
-   --form 'breadth="10"' \
+   --form 'width="10"' \
    --form 'height="3"'
 2. Update:
    ```bash
    curl --location --request PUT 'https://dhruvdutta1802.pythonanywhere.com/update/1/' \
    --header 'Authorization: Token yourtoken' \
    --form 'length="3"' \
-   --form 'breadth="2.5"' \
+   --form 'width="2.5"' \
    --form 'height="2"'
 3. list:
    ```bash

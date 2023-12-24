@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 import uuid
+from .validators import validate_average_area, validate_average_volume
+from django.conf import settings
 
 
 class Box(models.Model):
@@ -10,11 +12,12 @@ class Box(models.Model):
     height = models.DecimalField(max_digits=5, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    area = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    volume = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    area = models.DecimalField(
+        max_digits=5, decimal_places=2, default=0, validators=[validate_average_area])
+    volume = models.DecimalField(
+        max_digits=5, decimal_places=2, default=0, validators=[validate_average_volume,])
 
     def save(self, *args, **kwargs):
-        # Automatically set 'area' when saving the model
         self.area = self.length * self.breadth
         self.volume = self.length * self.breadth * self.height
         super().save(*args, **kwargs)

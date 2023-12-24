@@ -2,12 +2,13 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from rest_framework import generics
 from rest_framework import permissions
-from rest_framework import filters
+from rest_framework import filters, serializers
 from .models import Box
 from .serializers import BoxSerializer, BoxUpdateSerializer
 from rest_framework.exceptions import PermissionDenied
 from django_filters import rest_framework as django_filters
 from .filters import BoxFilter
+from django.core.exceptions import ValidationError
 
 
 class IsStaff(permissions.BasePermission):
@@ -30,13 +31,15 @@ class CreateBox(generics.CreateAPIView):
     def perform_create(self, serializer):
         user = self.request.user
 
-        # Check if the user is staff
-        if user.is_staff:
-            serializer.save(owner=user)
-        else:
-            # Non-staff user is not allowed to create a box
+        if not user.is_staff:
             raise PermissionDenied(
                 "You do not have permission to create a box.")
+        try:
+            serializer.is_valid(raise_exception=True)
+            serializer.save(owner=user)
+        except ValidationError as e:
+            return self.handle_exception(exc=e)
+        return JsonResponse({"message": "Box created successfully."}, status=200)
 
 
 class BoxUpdate(generics.UpdateAPIView):

@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-import uuid
 from .validators import validate_average_area, validate_average_volume
 from django.conf import settings
 

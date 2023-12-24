@@ -1,15 +1,11 @@
 from django.http import JsonResponse
-from django.views.decorators.http import require_POST
-from rest_framework import generics
-from rest_framework import permissions
-from rest_framework import filters, serializers
+from rest_framework import generics, permissions
 from .models import Box
 from .serializers import BoxSerializer, BoxUpdateSerializer
 from rest_framework.exceptions import PermissionDenied
 from django_filters import rest_framework as django_filters
 from .filters import BoxFilter
 from django.core.exceptions import ValidationError
-from django.shortcuts import render
 
 
 class IsStaff(permissions.BasePermission):

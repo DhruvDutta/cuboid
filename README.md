@@ -52,7 +52,7 @@ Brief description or introduction to your project.
    curl --location 'https://dhruvdutta1802.pythonanywhere.com/my_boxes/?volume__gt=50' \
    --header 'Authorization: Token yourtoken'
 5. Delete Box:
-   ```curl
+   ```bash
    curl --location --request DELETE 'https://dhruvdutta1802.pythonanywhere.com/delete_box/1/' \
    --header 'Authorization: Token 94d7331cde27a8b66fbee2981b3b19a55963b143'
    

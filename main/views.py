@@ -30,13 +30,13 @@ class CreateBox(generics.CreateAPIView):
 
         if not user.is_staff:
             raise PermissionDenied(
-                "You do not have permission to create a box.")
+                "Only Staff members can create a box.")
         try:
             serializer.is_valid(raise_exception=True)
             serializer.save(owner=user)
         except ValidationError as e:
             return self.handle_exception(exc=e)
-        return JsonResponse({"message": "Box created successfully."}, status=200)
+        return JsonResponse({"message": "Box created successfully!"}, status=200)
 
 
 class BoxUpdate(generics.UpdateAPIView):
@@ -81,4 +81,4 @@ class BoxDelete(generics.DestroyAPIView):
 
 
 def error_404_handler(request, exception):
-    return JsonResponse({"message": "not a page"}, status=404)
+    return JsonResponse({"message": "page not found!"}, status=404)

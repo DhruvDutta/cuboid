@@ -6,6 +6,7 @@ Brief description or introduction to your project.
 
 - [Installation](#installation)
 - [Live Demo](#live)
+- [APIs](#Apis)
 
 
 ## Installation

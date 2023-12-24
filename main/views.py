@@ -9,6 +9,7 @@ from rest_framework.exceptions import PermissionDenied
 from django_filters import rest_framework as django_filters
 from .filters import BoxFilter
 from django.core.exceptions import ValidationError
+from django.shortcuts import render
 
 
 class IsStaff(permissions.BasePermission):
@@ -81,3 +82,7 @@ class BoxDelete(generics.DestroyAPIView):
         instance = self.get_object()
         self.perform_destroy(instance)
         return JsonResponse({"message": "Box deleted successfully."}, status=200)
+
+
+def error_404_handler(request, exception):
+    return JsonResponse({"message": "not a page"}, status=404)

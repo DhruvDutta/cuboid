@@ -31,11 +31,9 @@ class CreateBox(generics.CreateAPIView):
         if not user.is_staff:
             raise PermissionDenied(
                 "Only Staff members can create a box.")
-        try:
-            serializer.is_valid(raise_exception=True)
-            serializer.save(owner=user)
-        except ValidationError as e:
-            return self.handle_exception(exc=e)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(owner=user)
+
         return JsonResponse({"message": "Box created successfully!"}, status=200)
 
 
@@ -60,7 +58,7 @@ class ListAllBoxes(generics.ListAPIView):
 
 class MyBoxList(generics.ListAPIView):
     serializer_class = BoxSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated, IsStaff]
     filter_backends = [django_filters.DjangoFilterBackend]
     filterset_class = BoxFilter
 
